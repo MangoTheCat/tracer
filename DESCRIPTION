@@ -1,0 +1,12 @@
+Package: tracer
+Title: Slick Call Stacks
+Version: 1.0.0
+Author: Gabor Csardi
+Maintainer: Gabor Csardi <gcsardi@mango-solutions.com>
+Description: Better looking call stacks after an error.
+License: MIT + file LICENSE
+LazyData: true
+URL: https://github.com/gaborcsardi/tracer
+BugReports: https://github.com/gaborcsardi/tracer/issues
+Suggests: 
+    testthat
