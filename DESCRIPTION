@@ -8,5 +8,10 @@ License: MIT + file LICENSE
 LazyData: true
 URL: https://github.com/gaborcsardi/tracer
 BugReports: https://github.com/gaborcsardi/tracer/issues
-Suggests: 
+Imports:
+    clisymbols,
+    crayon,
+    memoise
+Suggests:
     testthat
+RoxygenNote: 5.0.1
