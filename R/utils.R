@@ -11,8 +11,6 @@ drop_last <- function(x) {
   paste0(x, y)
 }
 
-str <- as.character
-
 terminal_width <- function() {
   as.numeric(system("tput cols", intern = TRUE))
 }
