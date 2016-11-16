@@ -12,3 +12,11 @@ drop_last <- function(x) {
 }
 
 str <- as.character
+
+terminal_width <- function() {
+  as.numeric(system("tput cols", intern = TRUE))
+}
+
+make_spaces <- function(n) {
+  paste(rep(" ", n), collapse = "")
+}

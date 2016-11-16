@@ -1,8 +1,8 @@
 
-#' @importFrom crayon bold white bgRed
+#' @importFrom crayon red
 
 error_style <- function(x) {
-  bold $ white $ bgRed(x)
+  red(x)
 }
 
 
@@ -36,8 +36,8 @@ arg_style <- function(x) {
 }
 
 
-#' @importFrom crayon blue black
+#' @importFrom crayon green
 
 fnam_style <- function(x) {
-  bold $ black(x)
+  green(x)
 }

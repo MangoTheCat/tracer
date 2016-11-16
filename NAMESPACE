@@ -2,11 +2,9 @@
 
 export(tracer)
 importFrom(clisymbols,symbol)
-importFrom(crayon,bgRed)
-importFrom(crayon,black)
 importFrom(crayon,blue)
-importFrom(crayon,bold)
+importFrom(crayon,green)
 importFrom(crayon,make_style)
-importFrom(crayon,white)
+importFrom(crayon,red)
 importFrom(crayon,yellow)
 importFrom(utils,installed.packages)

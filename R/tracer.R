@@ -9,10 +9,11 @@ tracer <- function() {
     on.exit(tracingState(tState))
   }
 
-  if (identical(getOption("show.error.messages"), FALSE)) {
-    ## from try(silent=TRUE)?
-    return(NULL)
-  }
+  ## Need to have a better test for try()
+  ## if (identical(getOption("show.error.messages"), FALSE)) {
+  ##   ## from try(silent=TRUE)?
+  ##   return(NULL)
+  ## }
 
   calls <- drop_last(sys.calls())
   funcs <- lapply(seq_along(calls), sys.function)
@@ -36,9 +37,7 @@ tracer <- function() {
 
 format_trace <- function(data) {
 
-  msg <- get_error_message()
-
-  cat("\n", error_style(msg), "\n", sep = "")
+  error_message()
 
   if (length(data$calls) == 0) return()
 
@@ -69,13 +68,13 @@ format_call_args <- function(call) {
   paste0("(", args, ")")
 }
 
-
-get_error_message <- function() {
+error_message <- function() {
 
   msg <- geterrmessage()
   msg <- trim_ws(msg)
-  msg <- paste0(" ", symbol$cross, " ", msg)
-  msg <- gsub("\n", " \n ", msg)
+  msg <- paste0(symbol$cross, " ", msg)
   msg <- paste0(msg, " \n")
   msg
+
+  cat("\n", error_style(msg), "\n", sep = "")
 }
