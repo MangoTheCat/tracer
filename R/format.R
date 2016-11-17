@@ -41,7 +41,9 @@ format_trace <- function(data, style = NULL) {
     col_envs  <- vapply(envs, FUN.VALUE = "", style_env, style = style)
     col_args  <- style$arg(args)
     col_fnams <- style$fnam(data$fnams)
-    col_locs  <- style$location(ifelse(is.na(data$files), "", locs))
+    col_locs  <- style$location(
+      ifelse(is.na(data$files) | data$files == "", "", locs)
+    )
 
     str_calls <- paste(
       paste0(col_nums, " ", col_envs, col_fnams, " ", col_args),
