@@ -1,6 +1,8 @@
 
 data <- new.env(parent = emptyenv())
 
+#' @importFrom utils getSrcDirectory getSrcFilename getSrcLocation
+
 dumper <- function() {
   calls <- drop_last(sys.calls())
   funcs <- lapply(seq_along(calls), sys.function)

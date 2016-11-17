@@ -33,7 +33,7 @@ format_trace <- function(data, style = NULL) {
     )
 
     locs <- paste0(
-      "\n   @ ", data$dirs, .Platform$file.sep,
+      "\n   at ", data$dirs, .Platform$file.sep,
       data$files, ":", data$lines, ":", data$cols
     )
 

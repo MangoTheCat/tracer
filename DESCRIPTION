@@ -11,7 +11,7 @@ BugReports: https://github.com/gaborcsardi/tracer/issues
 Imports:
     clisymbols,
     crayon,
-    memoise
+    prettycode
 Suggests:
     testthat
 RoxygenNote: 5.0.1.9000
