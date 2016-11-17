@@ -3,9 +3,9 @@ data <- new.env(parent = emptyenv())
 
 #' @importFrom utils getSrcDirectory getSrcFilename getSrcLocation
 
-dumper <- function() {
+dumper <- function(n = 1) {
 
-  calls <- drop_last(sys.calls())
+  calls <- drop_last(sys.calls(), n)
   funcs <- lapply(seq_along(calls), sys.function)
   msg <- geterrmessage()
 

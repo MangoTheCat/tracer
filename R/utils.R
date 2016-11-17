@@ -5,8 +5,8 @@ trim_ws <- function(x) {
 
 #' @importFrom utils head
 
-drop_last <- function(x) {
-  head(x, n = length(x) - 1L)
+drop_last <- function(x, n) {
+  head(x, n = length(x) - n)
 }
 
 `%+%` <- function(x, y) {
