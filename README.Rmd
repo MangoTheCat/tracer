@@ -33,16 +33,16 @@ library(tracer)
 ```
 
 After an error, call `tb()` instead of `traceback()`, to get a nice
-error stack:
+error stack summary:
 
 ![](/inst/screenshot1.png)
 
-To browse the code of the locations on the calls, supply the number of
+To browse the code at the locations of the calls, supply the number of
 the call to `tb()`:
 
 ![](/inst/screenshot2.png)
 
-Note the `tracer` can often show you the (deparsed) source code with the
+Note that `tracer` can often show the (deparsed) source code of the
 call location, even if the original R source code is no more available,
 like in the case of installed packages.
 
