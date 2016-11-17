@@ -62,7 +62,7 @@ format_trace <- function(data, style = NULL) {
 }
 
 style_env <- function(e, style) {
-  if (e %in% grey_envs()) {
+  if (e %in% grey_envs) {
     paste0(style$baseenv(e), "::")
   } else if (e != "") {
     paste0(style$env(e), "::")

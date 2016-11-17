@@ -22,6 +22,4 @@ error_style <- function(x) {
 
 #' @importFrom utils installed.packages
 
-grey_envs <- memoise::memoise(function() {
-  rownames(installed.packages(priority = "base"))
-})
+grey_envs <- rownames(installed.packages(priority = "base"))
