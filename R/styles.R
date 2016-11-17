@@ -1,5 +1,5 @@
 
-#' @importFrom crayon make_style combine_styles bold white
+#' @importFrom crayon make_style combine_styles bold white red blue
 
 tracer_default_style <- function() {
 
@@ -7,14 +7,14 @@ tracer_default_style <- function() {
     num = function(x) make_style("yellow")(format(x)),
     env = env_style,
     arg = make_style("grey90"),
-    fnam = combine_styles(make_style("gold2"), bold),
+    fnam = combine_styles(make_style("gold3"), bold),
     error = error_style
   )
 }
 
 error_style <- function(x) {
-  bg <- make_style("firebrick4", bg = TRUE)
-  combine_styles(bg, white)(trim_ws(x), "\n", sep = "")
+  fg <- make_style("firebrick2")
+  combine_styles(bold, fg)(trim_ws(x), "\n", sep = "")
 }
 
 #' @importFrom utils installed.packages
