@@ -18,15 +18,15 @@ format_trace <- function(data, style = NULL) {
 
     arg_cols <- (
       getOption("width", 80)
-      - max(nchar(data$nums)) - 1
+      - max(nchar(data$nums)) - 2
       - nchar(envs) - (nchar(envs) > 0) * 2
-      - nchar(data$fnams) - 1
+      - nchar(data$fnams) - 3
     )
 
     args <- ifelse(
       nchar(data$fargs) <= arg_cols,
       data$fargs,
-      paste0(
+      paste(
         substring(data$fargs, 1, arg_cols - nchar(symbol$ellipsis, "width")),
         cyan(symbol$ellipsis)
       )
