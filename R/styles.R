@@ -10,7 +10,8 @@ tracer_default_style <- function() {
     arg = make_style("grey80"),
     fnam = combine_styles(make_style("gold3"), bold),
     error = error_style,
-    location = blue
+    location = blue,
+    pointer = combine_styles(make_style("firebrick2", bg = TRUE), white)
   )
 }
 
@@ -22,4 +23,17 @@ error_style <- function(x) {
 
 #' @importFrom utils installed.packages
 
-grey_envs <- rownames(installed.packages(priority = "base"))
+grey_envs <- c(
+  rownames(installed.packages(priority = "base")),
+  "R_GlobalEnv"
+)
+
+style_env <- function(e, style) {
+  if (e %in% grey_envs) {
+    paste0(style$baseenv(e), "::")
+  } else if (e != "") {
+    paste0(style$env(e), "::")
+  } else {
+    ""
+  }
+}

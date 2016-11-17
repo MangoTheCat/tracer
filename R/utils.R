@@ -26,6 +26,10 @@ nullna <- function(x, unlist = TRUE) {
   if (unlist) unlist(x) else x
 }
 
+na0 <- function(x) {
+  ifelse(is.na(x), 0, x)
+}
+
 is_count <- function(x) {
   is.numeric(x) && length(x) == 1 && !is.na(x) && as.integer(x) == x
 }
