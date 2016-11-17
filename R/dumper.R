@@ -4,26 +4,43 @@ data <- new.env(parent = emptyenv())
 #' @importFrom utils getSrcDirectory getSrcFilename getSrcLocation
 
 dumper <- function() {
+
   calls <- drop_last(sys.calls())
   funcs <- lapply(seq_along(calls), sys.function)
-  
+  msg <- geterrmessage()
+
+  tryCatch(
+    dumper2(calls, funcs, msg),
+    error = function(e) e
+  )
+  invisible()
+}
+
+dumper2 <- function(calls, funcs, msg) {
+
   dump <- list(
     nums  = format(seq_along(calls)),
     calls = calls,
     funcs = funcs,
     envs  = vapply(funcs, function(x) environmentName(environment(x)), ""),
-    fnams = vapply(calls, function(x) as.character(x[[1]]), ""),
+    fnams = vapply(calls, get_call_name, ""),
     fargs = vapply(calls, get_call_args, ""),
     dirs  = nullna(lapply(calls, getSrcDirectory)),
     files = nullna(lapply(calls, getSrcFilename)),
     lines = nullna(lapply(calls, getSrcLocation)),
     cols  = nullna(lapply(calls, getSrcLocation, which = "column")),
-    error = geterrmessage()
+    error = msg
   )
 
   data$last_dump <- dump
+}
 
-  invisible()
+get_call_name <- function(call) {
+  if (is.call(call) && is.symbol(call[[1]])) {
+    as.character(call[[1]])
+  } else {
+    "<anonymous>"
+  }
 }
 
 get_call_args <- function(call) {
