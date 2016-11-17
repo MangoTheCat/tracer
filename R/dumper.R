@@ -12,10 +12,10 @@ dumper <- function() {
     envs  = vapply(funcs, function(x) environmentName(environment(x)), ""),
     fnams = vapply(calls, function(x) as.character(x[[1]]), ""),
     fargs = vapply(calls, get_call_args, ""),
-    dirs  = nullna(lapply(funcs, getSrcDirectory)),
-    files = nullna(lapply(funcs, getSrcFilename)),
-    lines = nullna(lapply(funcs, getSrcLocation)),
-    cols  = nullna(lapply(funcs, getSrcLocation, which = "column")),
+    dirs  = nullna(lapply(calls, getSrcDirectory)),
+    files = nullna(lapply(calls, getSrcFilename)),
+    lines = nullna(lapply(calls, getSrcLocation)),
+    cols  = nullna(lapply(calls, getSrcLocation, which = "column")),
     error = geterrmessage()
   )
 
