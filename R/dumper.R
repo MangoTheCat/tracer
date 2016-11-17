@@ -14,6 +14,7 @@ dumper <- function() {
     fargs = vapply(calls, get_call_args, ""),
     files = lapply(funcs, getSrcFilename),
     lines = lapply(funcs, getSrcLocation),
+    cols  = lapply(funcs, getSrcLocation, which = "column"),
     error = geterrmessage()
   )
 
