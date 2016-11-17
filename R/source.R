@@ -67,6 +67,8 @@ show_source <- function(srclines, line, context, location) {
 
 function_call_tokens <- c("SYMBOL_FUNCTION_CALL", "SPECIAL")
 
+#' @importFrom utils getParseData getParseText
+
 trace_code_without_source <- function(data, frame, context) {
 
   call <- data$calls[[frame]]
