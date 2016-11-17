@@ -18,3 +18,8 @@ terminal_width <- function() {
 make_spaces <- function(n) {
   paste(rep(" ", n), collapse = "")
 }
+
+nullna <- function(x, unlist = TRUE) {
+  x <- lapply(x, function(xx) if (is.null(xx) || ! length(xx)) NA else xx)
+  if (unlist) unlist(x) else x
+}

@@ -9,7 +9,8 @@ tracer_default_style <- function() {
     env = blue,
     arg = make_style("grey80"),
     fnam = combine_styles(make_style("gold3"), bold),
-    error = error_style
+    error = error_style,
+    location = blue
   )
 }
 

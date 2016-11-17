@@ -32,12 +32,21 @@ format_trace <- function(data, style = NULL) {
       )
     )
 
+    locs <- paste0(
+      "\n   @ ", data$dirs, .Platform$file.sep,
+      data$files, ":", data$lines, ":", data$cols
+    )
+
     col_nums  <- style$num(data$nums)
     col_envs  <- vapply(envs, FUN.VALUE = "", style_env, style = style)
     col_args  <- style$arg(args)
     col_fnams <- style$fnam(data$fnams)
+    col_locs  <- style$location(ifelse(is.na(data$files), "", locs))
 
-    str_calls <- paste0(col_nums, " ", col_envs, col_fnams, " ", col_args)
+    str_calls <- paste(
+      paste0(col_nums, " ", col_envs, col_fnams, " ", col_args),
+      col_locs
+    )
 
     cat("", str_calls, sep = "\n")
 
