@@ -10,6 +10,8 @@
 #' * can show the source code where the error happened, with syntax
 #'   highlighting, if the source code is available.
 #'
+#' `bt` is an alias to `tb`.
+#'
 #' @section The custom error handler:
 #' `tracer` defines an error handler when loaded, via a call to
 #' `options(error = tracer:::dumper)`. If you overwrite the error handler,
@@ -36,3 +38,8 @@ tb <- function(frame = NULL, context = 5) {
     trace_code(data$last_dump, frame, context)
   }
 }
+
+#' @export
+#' @rdname tb
+
+bt <- tb

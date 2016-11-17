@@ -2,9 +2,12 @@
 % Please edit documentation in R/traceback.R
 \name{tb}
 \alias{tb}
+\alias{bt}
 \title{A better \code{base::traceback()}}
 \usage{
 tb(frame = NULL, context = 5)
+
+bt(frame = NULL, context = 5)
 }
 \arguments{
 \item{frame}{If \code{NULL}, the stack trace is shown. If it is an integer
@@ -25,6 +28,9 @@ that support this),
 \item can show the source code where the error happened, with syntax
 highlighting, if the source code is available.
 }
+}
+\details{
+\code{bt} is an alias to \code{tb}.
 }
 \section{The custom error handler}{
 
