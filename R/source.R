@@ -70,6 +70,11 @@ function_call_tokens <- c("SYMBOL_FUNCTION_CALL", "SPECIAL")
 trace_code_without_source <- function(data, frame, context) {
 
   call <- data$calls[[frame]]
+  if (!is.symbol(call[[1]])) {
+    message("Could not find source code for this call")
+    return(invisible())
+  }
+
   pd_call <- getParseData(parse(text = deparse(call), keep.source = TRUE))
 
   func <- data$funcs[[frame - 1]]
