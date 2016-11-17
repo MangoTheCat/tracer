@@ -1,5 +1,6 @@
 
 #' @importFrom clisymbols symbol
+#' @importFrom crayon cyan
 
 format_trace <- function(data, style = NULL) {
 
@@ -12,16 +13,27 @@ format_trace <- function(data, style = NULL) {
 
   } else {
 
+    envs <- data$envs
+    envs[envs == "R_GlobalEnv"] <- ""
+
     arg_cols <- (
       getOption("width", 80)
       - max(nchar(data$nums)) - 1
-      - max(nchar(data$envs) + 2 + nchar(data$fnams)) - 1
+      - nchar(envs) - (nchar(envs) > 0) * 2
+      - nchar(data$fnams) - 1
     )
 
-    args <- substring(data$fargs, 1, arg_cols)
+    args <- ifelse(
+      nchar(data$fargs) <= arg_cols,
+      data$fargs,
+      paste0(
+        substring(data$fargs, 1, arg_cols - nchar(symbol$ellipsis, "width")),
+        cyan(symbol$ellipsis)
+      )
+    )
 
     col_nums  <- style$num(data$nums)
-    col_envs  <- style$env(data$envs)
+    col_envs  <- vapply(envs, FUN.VALUE = "", style_env, style = style)
     col_args  <- style$arg(args)
     col_fnams <- style$fnam(data$fnams)
 
@@ -38,10 +50,12 @@ format_trace <- function(data, style = NULL) {
   invisible()
 }
 
-
-format_call_args <- function(call) {
-  args <- as.character(call[-1])
-  args <- paste(args, collapse = ", ")
-  args <- gsub("\\s+", " ", args)
-  paste0("(", args, ")")
+style_env <- function(e, style) {
+  if (e %in% grey_envs()) {
+    paste0(style$baseenv(e), "::")
+  } else if (e != "") {
+    paste0(style$env(e), "::")
+  } else {
+    ""
+  }
 }

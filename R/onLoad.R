@@ -22,7 +22,7 @@ dumper <- function() {
     funcs = funcs,
     envs  = vapply(funcs, function(x) environmentName(environment(x)), ""),
     fnams = vapply(calls, function(x) as.character(x[[1]]), ""),
-    fargs = vapply(calls, format_call_args, ""),
+    fargs = vapply(calls, get_call_args, ""),
     files = lapply(funcs, getSrcFilename),
     lines = lapply(funcs, getSrcLocation),
     error = geterrmessage()
@@ -31,4 +31,18 @@ dumper <- function() {
   data$last_dump <- dump
 
   invisible()
+}
+
+get_call_args <- function(call) {
+  ## No arguments
+  if (is.null(call[-1])) return("()")
+
+  ## Otherwise format them
+  call[[1]] <- as.symbol("foobar")
+  str <- format(call)
+  str[1] <- sub("^foobar", "", str[1])
+  if (length(str) > 1) {
+    str[-1] <- sub("^[ ]+", "", str[-1])
+  }
+  paste(str, collapse = "")
 }
