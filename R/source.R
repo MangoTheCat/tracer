@@ -3,7 +3,7 @@
 #' @importFrom prettycode highlight
 #' @importFrom utils getSrcref
 
-trace_code <- function(data, frame, context = 5) {
+trace_code <- function(data, frame, context) {
 
   src <- getSrcref(data$calls[[frame]])
   if (is.null(src)) {

@@ -17,3 +17,4 @@ Suggests:
 Remotes:
     gaborcsardi/prettycode
 RoxygenNote: 5.0.1.9000
+Roxygen: list(markdown = TRUE)
