@@ -15,8 +15,7 @@ Imports:
     utils
 Suggests:
     testthat
-Remotes:
-    gaborcsardi/prettycode
+Remotes: gaborcsardi/prettycode
 RoxygenNote: 5.0.1.9000
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
