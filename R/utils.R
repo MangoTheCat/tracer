@@ -13,10 +13,6 @@ drop_last <- function(x, n) {
   paste0(x, y)
 }
 
-terminal_width <- function() {
-  as.numeric(system("tput cols", intern = TRUE))
-}
-
 make_spaces <- function(n) {
   paste(rep(" ", n), collapse = "")
 }
