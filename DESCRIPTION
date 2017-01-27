@@ -1,8 +1,7 @@
 Package: tracer
 Title: Slick Call Stacks
 Version: 1.0.0
-Author: Gábor Csárdi
-Maintainer: Gábor Csárdi <gcsardi@mango-solutions.com>
+Authors@R: person("Gabor", "Csardi",, "csardi.gabor@gmail.com", c("aut", "cre"))
 Description: Better looking call stacks after an error.
 License: MIT + file LICENSE
 LazyData: true
