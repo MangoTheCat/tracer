@@ -36,8 +36,9 @@ dumper2 <- function(calls, funcs, msg) {
 }
 
 get_call_name <- function(call) {
-  if (is.call(call) && is.symbol(call[[1]])) {
-    as.character(call[[1]])
+  if (is.call(call)) {
+    call[-1] <- NULL
+    sub("[(][)]\\s*$", "", capture.output(call))
   } else {
     "<anonymous>"
   }
