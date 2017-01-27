@@ -22,9 +22,19 @@ nullna <- function(x, unlist = TRUE) {
 
 ## The special case is to avoid converting to logical():
 ## ifelse(numeric(), 0, 1) is logical()
+## Also, we want to avoid ifelse() simplifying to integer,
+## so if the input is not integer we put in a real 0 (instead of 0L).
 
 na0 <- function(x) {
-  if (!length(x)) x else ifelse(is.na(x), 0, x)
+  if (!length(x)) {
+    x
+
+  } else if (is.integer(x)) {
+    ifelse(is.na(x), 0L, x)
+
+  } else {
+    ifelse(is.na(x), 0, x)
+  }
 }
 
 is_count <- function(x) {
