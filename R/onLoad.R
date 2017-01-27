@@ -2,10 +2,10 @@
 prev <- NULL
 
 .onLoad <- function(libname, pkgname) {
-  prev <<- getOption("error")
-  options(error = dumper)
+  prev <<- getOption("error")           # nocov
+  options(error = dumper)               # nocov
 }
 
 .onUnload <- function(libpath) {
-  options(error = prev)
+  options(error = prev)                 # nocov
 }                    
