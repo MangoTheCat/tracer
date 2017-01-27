@@ -22,8 +22,11 @@ nullna <- function(x, unlist = TRUE) {
   if (unlist) unlist(x) else x
 }
 
+## The special case is to avoid converting to logical():
+## ifelse(numeric(), 0, 1) is logical()
+
 na0 <- function(x) {
-  ifelse(is.na(x), 0, x)
+  if (!length(x)) x else ifelse(is.na(x), 0, x)
 }
 
 is_count <- function(x) {
