@@ -11,10 +11,6 @@ drop_last <- function(x, n) {
   head(x, n = length(x) - n)
 }
 
-`%+%` <- function(x, y) {
-  paste0(x, y)
-}
-
 make_spaces <- function(n) {
   paste(rep(" ", n), collapse = "")
 }
