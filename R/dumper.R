@@ -9,11 +9,12 @@ dumper <- function(n = 1) {
   funcs <- lapply(seq_along(calls), sys.function)
   msg <- geterrmessage()
 
-  tryCatch(
+  dump <- tryCatch(
     dumper2(calls, funcs, msg),
     error = function(e) e
   )
-  invisible()
+
+  invisible(dump)
 }
 
 dumper2 <- function(calls, funcs, msg) {
