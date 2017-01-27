@@ -3,6 +3,8 @@ trim_ws <- function(x) {
   sub("\\s+$", "", sub("^\\s+", "", x))
 }
 
+## We need this, because head(x, -n) behaves badly if n = 0
+
 #' @importFrom utils head
 
 drop_last <- function(x, n) {
