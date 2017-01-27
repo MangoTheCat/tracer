@@ -19,12 +19,24 @@ test_that("trace_code with source, colors", {
   no_frames <- length(dump$calls)
 
   out <- get_output(trace_code(dump, no_frames - 1, 5))
-  exp <- "\n  \033[34m  8\033[39m     crayon.enabled = \033[34mTRUE\033[39m\n  \033[34m  9\033[39m   )\n  \033[34m 10\033[39m   \033[36mon.exit\033[39m(\033[36moptions\033[39m(restore_width))\n  \033[34m 11\033[39m \n  \033[34m 12\033[39m   dump \033[32m<-\033[39m \033[34m\033[1mNULL\033[22m\033[39m\n\033[41m\033[37m ❯ 13 \033[39m\033[49m  f \033[32m<-\033[39m \033[31mfunction\033[39m(x) \033[36mg\033[39m()                  \033[38;5;247m\033[3m# do not change these lines\033[23m\033[39m\n  \033[34m 14\033[39m   g \033[32m<-\033[39m \033[31mfunction\033[39m(y) \033[36mh\033[39m(foo)\n  \033[34m 15\033[39m   h \033[32m<-\033[39m \033[31mfunction\033[39m(z) dump \033[32m<<-\033[39m \033[36mdumper\033[39m()\n  \033[34m 16\033[39m \n  \033[34m 17\033[39m   \033[36mf\033[39m()\n  \033[34m 18\033[39m \n\n   \033[33mf\033[39m\033[32m at "
+  expect_true(crayon::has_style(out))
 
-  expect_match(out, exp, fixed = TRUE)
+  exp <- win_newline("\n    8     crayon.enabled = TRUE\n    9   )\n   10   on.exit(options(restore_width))\n   11 \n   12   dump <- NULL\n > 13   f <- function(x) g()                  # do not change these lines\n   14   g <- function(y) h(foo)\n   15   h <- function(z) dump <<- dumper()\n   16 \n   17   f()\n   18 \n\n   f at")
+
+  out2 <- crayon::strip_style(out)
+  out2 <- gsub("❯", ">", out2)
+  
+  expect_match(out2, exp, fixed = TRUE)
 
   out <- get_output(trace_code_with_source(dump, no_frames - 1, 5))
-  exp <- "\n  \033[34m  8\033[39m     crayon.enabled = \033[34mTRUE\033[39m\n  \033[34m  9\033[39m   )\n  \033[34m 10\033[39m   \033[36mon.exit\033[39m(\033[36moptions\033[39m(restore_width))\n  \033[34m 11\033[39m \n  \033[34m 12\033[39m   dump \033[32m<-\033[39m \033[34m\033[1mNULL\033[22m\033[39m\n\033[41m\033[37m ❯ 13 \033[39m\033[49m  f \033[32m<-\033[39m \033[31mfunction\033[39m(x) \033[36mg\033[39m()                  \033[38;5;247m\033[3m# do not change these lines\033[23m\033[39m\n  \033[34m 14\033[39m   g \033[32m<-\033[39m \033[31mfunction\033[39m(y) \033[36mh\033[39m(foo)\n  \033[34m 15\033[39m   h \033[32m<-\033[39m \033[31mfunction\033[39m(z) dump \033[32m<<-\033[39m \033[36mdumper\033[39m()\n  \033[34m 16\033[39m \n  \033[34m 17\033[39m   \033[36mf\033[39m()\n  \033[34m 18\033[39m \n\n   \033[33mf\033[39m\033[32m at "
+  expect_true(crayon::has_style(out))
+
+  exp <- win_newline("\n    8     crayon.enabled = TRUE\n    9   )\n   10   on.exit(options(restore_width))\n   11 \n   12   dump <- NULL\n > 13   f <- function(x) g()                  # do not change these lines\n   14   g <- function(y) h(foo)\n   15   h <- function(z) dump <<- dumper()\n   16 \n   17   f()\n   18 \n\n   f at")
+
+  out2 <- crayon::strip_style(out)
+  out2 <- gsub("❯", ">", out2)
+
+  expect_match(out2, exp, fixed = TRUE)
 })
 
 test_that("trace_code, top level", {

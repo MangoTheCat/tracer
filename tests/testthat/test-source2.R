@@ -20,6 +20,8 @@ test_that("trace_code without source, no colors", {
   attr(dump$calls[[no_frames - 1]], "srcref") <- NULL
 
   out <- get_output(trace_code(dump, no_frames - 1, 5))
-  exp <- "\n   1 function (x) \n ❯ 2 g()\n\n   f (?), function without source\n\n"
-  expect_equal(out, exp)
+  exp <- win_newline("\n   1 function (x) \n > 2 g()\n\n   f (?), function without source\n\n")
+
+  out2 <- gsub("\u276F", ">", out)
+  expect_match(out2, exp, fixed = TRUE)
 })
