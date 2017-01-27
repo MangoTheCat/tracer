@@ -13,6 +13,7 @@ Imports:
     prettycode,
     utils
 Suggests:
+    covr,
     testthat
 Remotes: gaborcsardi/prettycode
 RoxygenNote: 5.0.1.9000
