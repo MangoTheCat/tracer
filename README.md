@@ -41,6 +41,11 @@ Note that `tracer` can often show the (deparsed) source code of the
 call location, even if the original R source code is no more available,
 like in the case of installed packages.
 
+## Caveat
+
+`tracer` sets the error handler via `options(error = ...)`. If the user
+changes the error handler manually, then `tracer` will not work.
+
 ## License
 
 MIT © Mango Solutions
