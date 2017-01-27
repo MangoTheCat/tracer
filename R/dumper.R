@@ -35,6 +35,8 @@ dumper2 <- function(calls, funcs, msg) {
   data$last_dump <- dump
 }
 
+#' @importFrom utils capture.output
+
 get_call_name <- function(call) {
   if (is.call(call)) {
     call[-1] <- NULL
