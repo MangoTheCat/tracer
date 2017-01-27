@@ -41,8 +41,9 @@ dumper2 <- function(calls, funcs, msg) {
 get_call_name <- function(call) {
   if (is.call(call)) {
     call[-1] <- NULL
-    sub("[(][)]\\s*$", "", capture.output(call))
+    sub("[(][)]\\s*$", "", paste(capture.output(call), collapse = "\n"))
   } else {
+    ## This should never happen, but better safe than sorry
     "<anonymous>"
   }
 }
