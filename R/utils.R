@@ -30,7 +30,8 @@ na0 <- function(x) {
 }
 
 is_count <- function(x) {
-  is.numeric(x) && length(x) == 1 && !is.na(x) && as.integer(x) == x
+  is.numeric(x) && length(x) == 1 && !is.na(x) && as.integer(x) == x &&
+    x >= 0L
 }
 
 is_string <- function(x) {
