@@ -1,6 +1,6 @@
 Package: tracer
 Title: Slick Call Stacks
-Version: 1.0.0
+Version: 1.0.0.9000
 Authors@R: person("Gabor", "Csardi",, "csardi.gabor@gmail.com", c("aut", "cre"))
 Description: Better looking call stacks after an error.
 License: MIT + file LICENSE
